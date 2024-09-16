@@ -21,7 +21,7 @@ import sys
 
 # Constants
 R_E_KM = 6378.137
-e_E = 0.081819221456
+E_E = 0.081819221456
 r_E_km = 6378.1363
 
 # Helper functions
@@ -42,11 +42,11 @@ else:
     sys.exit()
 
 # Calculate ECEF coordinates
-lat_rad = lat_deg * math.pi / 180.0 #converts lattitude from degrees to radians
-lon_rad = lon_deg * math.pi / 180.0 #converts longitutde from degrees to radians
-denom = calc_denom(e_E, lat_rad)
+lat_rad = lat_deg * math.pi / 180.0 #converts latitude from degrees to radians
+lon_rad = lon_deg * math.pi / 180.0 #converts longitude from degrees to radians
+denom = calc_denom(E_E, lat_rad)
 C_E = r_E_km / denom
-S_E = (r_E_km * (1 - e_E**2)) / denom
+S_E = (r_E_km * (1 - E_E**2)) / denom
 r_x = (C_E + hae_km) * math.cos(lat_rad) * math.cos(lon_rad)
 r_y = (C_E + hae_km) * math.cos(lat_rad) * math.sin(lon_rad)
 r_z = (S_E +hae_km) * math.sin(lat_rad)
